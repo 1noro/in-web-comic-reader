@@ -1,17 +1,12 @@
 
 
 (function (remove_previous_execution, manga_mode, offset) {
+    
     var
         iterator = 0,
         body = document.getElementsByTagName('body')[0],
         imgs_src = [],
-        imgs_obj = [],
-		ww = window.innerWidth,
-		wh = window.innerHeight;
-
-    if (remove_previous_execution && document.getElementById('mycont')) {
-        body.removeChild(document.getElementById('mycont'));
-    }
+        imgs_obj = [];
 
     var i = offset?1:0;
     while ( /* i < number of comic_image_pages in web */ ) {
@@ -37,6 +32,10 @@
     }
 
     // console.log(imgs_obj);
+
+    if (remove_previous_execution && document.getElementById('mycont')) {
+        body.removeChild(document.getElementById('mycont'));
+    }
 
     var mycont = document.createElement("div");
 
