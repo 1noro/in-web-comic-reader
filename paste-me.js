@@ -126,4 +126,4 @@
 
     }
 
-})(0, 1, 0); //DEFAULT CONFIG
+})(0, 1, 0); // DEFAULT CONFIG
