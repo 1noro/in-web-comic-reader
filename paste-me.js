@@ -1,6 +1,6 @@
 
 
-(function (remove_previous_execution, offset) {
+(function (remove_previous_execution, manga_mode, offset) {
     var
         iterator = 0,
         body = document.getElementsByTagName('body')[0],
@@ -49,8 +49,13 @@
 
     body.appendChild(mycont);
 
-    mycont.appendChild(imgs_obj[1]);
-    mycont.appendChild(imgs_obj[0]);
+    if (manga_mode) {
+        mycont.appendChild(imgs_obj[1]);
+        mycont.appendChild(imgs_obj[0]);
+    } else {
+        mycont.appendChild(imgs_obj[0]);
+        mycont.appendChild(imgs_obj[1]);
+    }
 
     document.onkeydown = function(e) {
 
@@ -60,15 +65,25 @@
             mycont.innerHTML = "";
             if (iterator < imgs_obj.length) {
                 if (imgs_obj[iterator+1]) {
-                    mycont.appendChild(imgs_obj[iterator+1]);
-                    mycont.appendChild(imgs_obj[iterator]);
+                    if (manga_mode) {
+                        mycont.appendChild(imgs_obj[iterator+1]);
+                        mycont.appendChild(imgs_obj[iterator]);
+                    } else {
+                        mycont.appendChild(imgs_obj[iterator]);
+                        mycont.appendChild(imgs_obj[iterator+1]);
+                    }
                 } else {
                     mycont.appendChild(imgs_obj[iterator]);
                 }
             } else {
                 iterator = 0;
-                mycont.appendChild(imgs_obj[iterator+1]);
-                mycont.appendChild(imgs_obj[iterator]);
+                if (manga_mode) {
+                    mycont.appendChild(imgs_obj[iterator+1]);
+                    mycont.appendChild(imgs_obj[iterator]);
+                } else {
+                    mycont.appendChild(imgs_obj[iterator]);
+                    mycont.appendChild(imgs_obj[iterator+1]);
+                }
             }
 
         }
@@ -78,14 +93,23 @@
             iterator-=2;
             mycont.innerHTML = "";
             if (iterator >= 0) {
+                if (manga_mode) {
                     mycont.appendChild(imgs_obj[iterator+1]);
                     mycont.appendChild(imgs_obj[iterator]);
-
+                } else {
+                    mycont.appendChild(imgs_obj[iterator]);
+                    mycont.appendChild(imgs_obj[iterator+1]);
+                }
             } else {
                 if (imgs_obj.length % 2 == 0) {
                     iterator = imgs_obj.length-2;
-                    mycont.appendChild(imgs_obj[iterator+1]);
-                    mycont.appendChild(imgs_obj[iterator]);
+                    if (manga_mode) {
+                        mycont.appendChild(imgs_obj[iterator+1]);
+                        mycont.appendChild(imgs_obj[iterator]);
+                    } else {
+                        mycont.appendChild(imgs_obj[iterator]);
+                        mycont.appendChild(imgs_obj[iterator+1]);
+                    }
                 } else {
                     iterator = imgs_obj.length-1;
                     mycont.appendChild(imgs_obj[iterator]);
@@ -101,4 +125,4 @@
 
     }
 
-})(0, 0);
+})(0, 1, 0);
