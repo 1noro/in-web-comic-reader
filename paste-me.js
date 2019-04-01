@@ -16,6 +16,7 @@
     var i = offset?1:0;
     while ( /* i < number of comic_image_pages in web */ ) {
 
+        // YOUR CODE HERE
         /* add comic_image_page(i) to imgs_src */
 
         i++;
